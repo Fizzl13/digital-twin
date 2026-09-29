@@ -1,14 +1,10 @@
 const $ = (id) => document.getElementById(id);
-const SOURCE_LABELS = {
-  profile: "Profile", fizzl: "FIZZL", mediahuis: "Mediahuis", consulting: "Consulting", tkmaxx: "TK Maxx",
-  skills: "Skills", languages: "Languages", education: "Education", services: "x402 services", projects: "Projects",
-  work_style: "Work style", ai_view: "View on AI", career: "Career", personal: "Outside work", approach: "Approach", contact: "Contact",
-};
 
 function newId() {
   return crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 }
 let conversationId = newId();
+let suggestions = [];
 
 function bubble(role, text, meta) {
   $("empty").hidden = true;
@@ -27,26 +23,34 @@ async function ask(question) {
   bubble("you", question);
   $("question").value = "";
   $("go").disabled = true;
-  const thinking = bubble("twin thinking", "Thinking…");
+  const thinking = bubble("twin thinking", t("thinking"));
   try {
     const res = await fetch("/api/chat", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ question, conversationId }),
     });
-    const data = await res.json().catch(() => ({ error: "Unexpected answer from the server." }));
+    const data = await res.json().catch(() => ({ error: t("unexpected") }));
     thinking.remove();
-    if (!res.ok) return bubble("twin error", data.error || "Something went wrong.");
-    const sources = data.sources.map((s) => SOURCE_LABELS[s] ?? s).join(", ");
-    const meta = data.in_profile ? `Confidence: ${data.confidence}${sources ? ` · From: ${sources}` : ""}` : "Not in his profile";
+    if (!res.ok) return bubble("twin error", data.error || t("failed"));
+    const sources = data.sources.map((s) => t(`s_${s}`)).join(", ");
+    const meta = data.in_profile ? `${t("confidence")}: ${t(data.confidence)}${sources ? ` · ${t("from")}: ${sources}` : ""}` : t("notInProfile");
     bubble("twin", data.answer, meta);
   } catch {
     thinking.remove();
-    bubble("twin error", "Could not reach the twin. Check your connection.");
+    bubble("twin error", t("offline"));
   } finally {
     $("go").disabled = false;
     $("question").focus();
   }
+}
+
+function renderSuggestions() {
+  $("suggestions").replaceChildren(...suggestions.map((s) => {
+    const b = Object.assign(document.createElement("button"), { type: "button", textContent: s[lang] });
+    b.addEventListener("click", () => ask(s[lang]));
+    return b;
+  }));
 }
 
 $("form").addEventListener("submit", (e) => { e.preventDefault(); ask($("question").value); });
@@ -58,12 +62,10 @@ $("clear").addEventListener("click", () => {
   $("empty").hidden = false;
 });
 
+document.addEventListener("langchange", renderSuggestions);
+applyLang();
+
 (async () => {
-  const config = await (await fetch("/api/config")).json();
-  const lang = navigator.language?.startsWith("nl") ? "nl" : "en";
-  for (const s of config.suggestions) {
-    const b = Object.assign(document.createElement("button"), { type: "button", textContent: s[lang] });
-    b.addEventListener("click", () => ask(s[lang]));
-    $("suggestions").append(b);
-  }
+  suggestions = (await (await fetch("/api/config")).json()).suggestions;
+  renderSuggestions();
 })();
