@@ -10,6 +10,7 @@ Live: see [projects.fizzl.eu](https://projects.fizzl.eu/). Built by Frits ([fizz
 - **The answer** comes from Claude with structured output: `answer`, `language`, `confidence`, the `sources` (profile sections) it used, and `in_profile`.
 - **Guard rails:** the system prompt is fixed on the server. The visitor's question is wrapped as data, and private topics (age, income, the children's names or ages…) are off limits. The browser can't send its own prompt, so the key can't be used as an open Claude proxy.
 - **Memory:** the last 3 turns per conversation, kept on the server and forgotten after 30 minutes, so follow-ups like "and before that?" work.
+- **Voice:** a microphone button turns a spoken question into text (in the page language), and answers to spoken questions are read aloud; "Read answers aloud" does that for every answer. Both use the browser's own speech features (`public/voice.js`), so the server doesn't change. Where a browser has no speech recognition (Firefox), the microphone button simply doesn't show.
 - **Limits:** 20 questions per visitor per hour and 500 per day. The question is capped at 500 characters.
 
 ## API

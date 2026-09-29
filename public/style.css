@@ -26,6 +26,11 @@ button{cursor:pointer;font:inherit}
 .msg.thinking p{color:var(--muted)}.msg.error p{color:#ff9d8a}
 .suggestions{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 14px}.suggestions button{background:transparent;color:var(--text);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:12px}.suggestions button:hover{border-color:var(--mint)}
 .ask{display:flex;gap:10px}
+.head-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.ghost[aria-pressed="true"]{color:#02100c;background:var(--mint);border-color:var(--mint)}
+.mic{flex-shrink:0;width:46px;display:grid;place-items:center;background:transparent;color:var(--mint);border:1px solid var(--line);border-radius:10px}.mic svg{width:20px;height:20px}.mic:hover{border-color:var(--mint)}
+.mic[aria-pressed="true"]{background:#ff9d8a;color:#1a0602;border-color:#ff9d8a;animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 6px rgba(255,157,138,.25)}}
+@media(prefers-reduced-motion:reduce){.mic[aria-pressed="true"]{animation:none}}
 .ask input{flex:1;min-width:0;background:#030d0e;color:var(--text);border:1px solid #1f3434;border-radius:10px;padding:12px;font:inherit;font-size:15px}.ask input:focus{outline:none;border-color:var(--mint)}
 #go{background:var(--mint);color:#02100c;border:0;border-radius:10px;padding:0 20px;font-weight:700;letter-spacing:.5px}#go:disabled{opacity:.6;cursor:wait}
 .fine{font-size:12px;color:var(--muted);margin:12px 0 0}

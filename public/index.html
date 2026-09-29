@@ -26,7 +26,7 @@
   </section>
 
   <section class="chat panel">
-    <div class="panel-head"><span data-i18n="conversation">01 / CONVERSATION</span><button id="clear" type="button" class="ghost" data-i18n="clear">New conversation</button></div>
+    <div class="panel-head"><span data-i18n="conversation">01 / CONVERSATION</span><div class="head-actions"><button id="speak" type="button" class="ghost" aria-pressed="false" hidden><span data-i18n="readAloud">Read answers aloud</span></button><button id="clear" type="button" class="ghost" data-i18n="clear">New conversation</button></div></div>
     <div id="log" class="log" aria-live="polite">
       <p class="empty" id="empty" data-i18n="empty">Pick a question below or type your own.</p>
     </div>
@@ -34,8 +34,10 @@
     <form id="form" class="ask">
       <label for="question" class="sr" data-i18n="questionLabel">Your question</label>
       <input id="question" type="text" maxlength="500" autocomplete="off" data-i18n-placeholder="placeholder" placeholder="e.g. What has he built with AI?" required>
+      <button id="mic" type="button" class="mic" aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
       <button id="go" type="submit" data-i18n="ask">Ask →</button>
     </form>
+    <p id="voiceNote" class="fine" data-i18n="voiceNote" hidden>Speech is handled by your browser; some browsers send the audio to their own service to turn it into text.</p>
     <p class="fine" data-i18n-html="fine">Demo limit: 20 questions per hour. Answers are AI-generated; for the official facts see <a href="https://cv.fizzl.eu/">cv.fizzl.eu</a>.</p>
   </section>
 </main>
@@ -46,5 +48,6 @@
 </footer>
 <script src="i18n.js"></script>
 <script src="app.js"></script>
+<script src="voice.js"></script>
 </body>
 </html>
