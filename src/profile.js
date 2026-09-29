@@ -1,6 +1,6 @@
 // Everything the twin knows: the public CV (cv.fizzl.eu) plus what Frits chose
 // to share about how he works, his view on AI, the role he is looking for and
-// his hobbies. No private details (age, family), nothing internal about
+// his hobbies, and that he has two children. No other private details (his age, the children's names or ages), nothing internal about
 // employers. The twin may not answer beyond this.
 
 export const PERSON = "Frits";
@@ -86,7 +86,7 @@ Processes he would most like to improve: administration, customer service, plann
   },
   personal: {
     title: "Outside work",
-    text: `Hobbies: mountain biking and wave surfing.`,
+    text: `He is a father of two children. Hobbies: mountain biking and wave surfing.`,
   },
   approach: {
     title: "How he works",
