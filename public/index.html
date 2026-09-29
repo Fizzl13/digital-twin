@@ -13,34 +13,38 @@
 <body>
 <header class="top">
   <a class="brand" href="https://projects.fizzl.eu/">Digital<span>Twin</span></a>
-  <span class="pill"><i></i> ANSWERS ONLY FROM <b>HIS OWN PROFILE</b></span>
+  <div class="top-right">
+    <span class="pill"><i></i> <span data-i18n-html="pill">ANSWERS ONLY FROM <b>HIS OWN PROFILE</b></span></span>
+    <div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang="nl" aria-pressed="false">NL</button><button type="button" data-lang="en" aria-pressed="true">EN</button></div>
+  </div>
 </header>
 
 <main>
   <section class="intro">
-    <h1>Ask Frits.<br><em>Or rather, his twin.</em></h1>
-    <p>Ask about his experience, the AI tools he built, how he works, how he thinks about AI or what kind of role he is looking for, in English or Dutch. The twin answers only from a profile Frits wrote himself and says which parts it used. If the profile doesn't cover it, it tells you so.</p>
+    <h1 data-i18n-html="h1">Ask Frits.<br><em>Or rather, his twin.</em></h1>
+    <p data-i18n="intro">Ask about his experience, the AI tools he built, how he works, how he thinks about AI or what kind of role he is looking for, in English or Dutch. The twin answers only from a profile Frits wrote himself and says which parts it used. If the profile doesn't cover it, it tells you so.</p>
   </section>
 
   <section class="chat panel">
-    <div class="panel-head"><span>01 / CONVERSATION</span><button id="clear" type="button" class="ghost">New conversation</button></div>
+    <div class="panel-head"><span data-i18n="conversation">01 / CONVERSATION</span><button id="clear" type="button" class="ghost" data-i18n="clear">New conversation</button></div>
     <div id="log" class="log" aria-live="polite">
-      <p class="empty" id="empty">Pick a question below or type your own.</p>
+      <p class="empty" id="empty" data-i18n="empty">Pick a question below or type your own.</p>
     </div>
     <div id="suggestions" class="suggestions" aria-label="Example questions"></div>
     <form id="form" class="ask">
-      <label for="question" class="sr">Your question</label>
-      <input id="question" type="text" maxlength="500" autocomplete="off" placeholder="e.g. What has he built with AI?" required>
-      <button id="go" type="submit">Ask →</button>
+      <label for="question" class="sr" data-i18n="questionLabel">Your question</label>
+      <input id="question" type="text" maxlength="500" autocomplete="off" data-i18n-placeholder="placeholder" placeholder="e.g. What has he built with AI?" required>
+      <button id="go" type="submit" data-i18n="ask">Ask →</button>
     </form>
-    <p class="fine">Demo limit: 20 questions per hour. Answers are AI-generated; for the official facts see <a href="https://cv.fizzl.eu/">cv.fizzl.eu</a>.</p>
+    <p class="fine" data-i18n-html="fine">Demo limit: 20 questions per hour. Answers are AI-generated; for the official facts see <a href="https://cv.fizzl.eu/">cv.fizzl.eu</a>.</p>
   </section>
 </main>
 
 <footer>
-  <span>Built by <a href="https://fizzl.eu/">Frits · fizzl.eu</a> with Claude.</span>
-  <a href="https://github.com/Fizzl13/digital-twin">Source on GitHub ↗</a>
+  <span data-i18n-html="footer">Built by <a href="https://fizzl.eu/">Frits · fizzl.eu</a> with Claude.</span>
+  <a href="https://github.com/Fizzl13/digital-twin" data-i18n="source">Source on GitHub ↗</a>
 </footer>
+<script src="i18n.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
