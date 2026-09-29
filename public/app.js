@@ -36,6 +36,7 @@ async function ask(question) {
     const sources = data.sources.map((s) => t(`s_${s}`)).join(", ");
     const meta = data.in_profile ? `${t("confidence")}: ${t(data.confidence)}${sources ? ` · ${t("from")}: ${sources}` : ""}` : t("notInProfile");
     bubble("twin", data.answer, meta);
+    document.dispatchEvent(new CustomEvent("twin-answer", { detail: data }));
   } catch {
     thinking.remove();
     bubble("twin error", t("offline"));
