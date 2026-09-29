@@ -1,12 +1,12 @@
 # Digital Twin
 
-Ask Frits, or rather his twin. Visitors ask about his experience, skills and AI projects in English or Dutch. The twin answers **only from his public CV**, says which parts of it it used, and says so when the CV doesn't cover a question.
+Ask Frits, or rather his twin. Visitors ask about his experience, skills and AI projects in English or Dutch. The twin answers **only from a profile Frits wrote himself**: his public CV plus how he works, his view on AI, the role he is looking for and his hobbies. It says which parts it used, and says so when the profile doesn't cover a question.
 
 Live: see [projects.fizzl.eu](https://projects.fizzl.eu/). Built by Frits ([fizzl.eu](https://fizzl.eu/)) with Claude.
 
 ## How it works
 
-- **The knowledge** is [`src/profile.js`](src/profile.js): the same facts as [cv.fizzl.eu](https://cv.fizzl.eu/), split into sections. Nothing private and nothing internal about employers. A test fails if private details ever end up in it.
+- **The knowledge** is [`src/profile.js`](src/profile.js): the facts from [cv.fizzl.eu](https://cv.fizzl.eu/) plus what Frits chose to share, split into sections. Nothing private (age, family) and nothing internal about employers. A test fails if private details ever end up in it.
 - **The answer** comes from Claude with structured output: `answer`, `language`, `confidence`, the `sources` (profile sections) it used, and `in_profile`.
 - **Guard rails:** the system prompt is fixed on the server. The visitor's question is wrapped as data, and private topics (age, family, income…) are off limits. The browser can't send its own prompt, so the key can't be used as an open Claude proxy.
 - **Memory:** the last 3 turns per conversation, kept on the server and forgotten after 30 minutes, so follow-ups like "and before that?" work.

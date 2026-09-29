@@ -111,5 +111,5 @@ test("routes: the fizzl.eu widget contract, CORS for the fizzl sites only, 400 a
 
 test("privacy: no private details in anything the twin knows or serves", () => {
   const all = ["src/profile.js", "src/twin.js", "public/index.html", "public/app.js"].map((f) => fs.readFileSync(new URL(`../${f}`, import.meta.url), "utf8")).join("\n").replace("linkedin.com/in/fritszwager", "");
-  assert.doesNotMatch(all, /birth|1982|children|kinderen|hobbies|zwager|dynamics|advantage|genesys|antwoord ?redactie/i);
+  assert.doesNotMatch(all, /birth|1982|children|kinderen|zwager|dynamics|advantage|genesys|antwoord ?redactie/i);
 });

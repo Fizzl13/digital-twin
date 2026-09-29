@@ -1,7 +1,8 @@
 const $ = (id) => document.getElementById(id);
 const SOURCE_LABELS = {
   profile: "Profile", fizzl: "FIZZL", mediahuis: "Mediahuis", consulting: "Consulting", tkmaxx: "TK Maxx",
-  skills: "Skills", languages: "Languages", education: "Education", projects: "Projects", approach: "Approach", contact: "Contact",
+  skills: "Skills", languages: "Languages", education: "Education", services: "x402 services", projects: "Projects",
+  work_style: "Work style", ai_view: "View on AI", career: "Career", personal: "Outside work", approach: "Approach", contact: "Contact",
 };
 
 function newId() {
@@ -37,7 +38,7 @@ async function ask(question) {
     thinking.remove();
     if (!res.ok) return bubble("twin error", data.error || "Something went wrong.");
     const sources = data.sources.map((s) => SOURCE_LABELS[s] ?? s).join(", ");
-    const meta = data.in_profile ? `Confidence: ${data.confidence}${sources ? ` · From: ${sources}` : ""}` : "Not on the CV";
+    const meta = data.in_profile ? `Confidence: ${data.confidence}${sources ? ` · From: ${sources}` : ""}` : "Not in his profile";
     bubble("twin", data.answer, meta);
   } catch {
     thinking.remove();
