@@ -27,13 +27,27 @@
     labels();
   }
 
+  // Browsers don't say which voices are male, so pick by the names the common
+  // systems use (Apple, Microsoft, Google). If a language has no male voice,
+  // the first voice for it gets a lower pitch.
+  const MALE = /\b(daniel|alex|aaron|arthur|fred|gordon|oliver|reed|rocko|eddy|evan|nathan|tom|thomas|james|david|mark|guy|george|ryan|william|brian|christopher|eric|roger|andrew|xander|maarten|frank|arnaud|colin|male)\b/i;
+  const FEMALE = /female|samantha|karen|moira|tessa|victoria|fiona|susan|zira|hazel|claire|ellen|fenna|colette|flo|shelley|sandy|grandma|kathy|aria|jenny|emma|sonia|libby/i;
+
+  function pickVoice(language) {
+    const voices = synth.getVoices().filter((v) => v.lang.replace("_", "-").toLowerCase().startsWith(language));
+    const male = voices.find((v) => MALE.test(v.name) && !FEMALE.test(v.name));
+    return { voice: male ?? voices.find((v) => !FEMALE.test(v.name)) ?? voices[0], male: Boolean(male) };
+  }
+
   function speak(text, language) {
     if (!synth) return;
     synth.cancel();
     const u = new SpeechSynthesisUtterance(text);
     u.lang = bcp47(language);
-    const voice = synth.getVoices().find((v) => v.lang.replace("_", "-").toLowerCase().startsWith(language));
+    const { voice, male } = pickVoice(language);
     if (voice) u.voice = voice;
+    u.pitch = male ? 1 : 0.8;
+    u.rate = 1;
     synth.speak(u);
   }
 
@@ -76,6 +90,7 @@
   }
 
   if (synth) {
+    synth.getVoices();
     speakBtn.hidden = false;
     speakBtn.addEventListener("click", () => {
       readAloud = !readAloud;
