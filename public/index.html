@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#020708">
+<title>Ask Frits — Digital Twin</title>
+<meta name="description" content="A digital twin of Frits' CV: ask about his experience, skills and AI projects. It only answers from what is on his public CV.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="https://projects.fizzl.eu/">Digital<span>Twin</span></a>
+  <span class="pill"><i></i> ANSWERS ONLY FROM <b>THE PUBLIC CV</b></span>
+</header>
+
+<main>
+  <section class="intro">
+    <h1>Ask Frits.<br><em>Or rather, his twin.</em></h1>
+    <p>Ask about his experience, skills or the AI tools he built, in English or Dutch. The twin answers only from his public CV and says which parts it used. If the CV doesn't cover it, it tells you so.</p>
+  </section>
+
+  <section class="chat panel">
+    <div class="panel-head"><span>01 / CONVERSATION</span><button id="clear" type="button" class="ghost">New conversation</button></div>
+    <div id="log" class="log" aria-live="polite">
+      <p class="empty" id="empty">Pick a question below or type your own.</p>
+    </div>
+    <div id="suggestions" class="suggestions" aria-label="Example questions"></div>
+    <form id="form" class="ask">
+      <label for="question" class="sr">Your question</label>
+      <input id="question" type="text" maxlength="500" autocomplete="off" placeholder="e.g. What has he built with AI?" required>
+      <button id="go" type="submit">Ask →</button>
+    </form>
+    <p class="fine">Demo limit: 20 questions per hour. Answers are AI-generated from <a href="https://cv.fizzl.eu/">cv.fizzl.eu</a>; the CV itself is the source of truth.</p>
+  </section>
+</main>
+
+<footer>
+  <span>Built by <a href="https://fizzl.eu/">Frits · fizzl.eu</a> with Claude.</span>
+  <a href="https://github.com/Fizzl13/digital-twin">Source on GitHub ↗</a>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
