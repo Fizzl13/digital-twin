@@ -1,6 +1,6 @@
 // Everything the twin knows: the public CV (cv.fizzl.eu) plus what Frits chose
 // to share about how he works, his view on AI, the role he is looking for and
-// his hobbies, and that he has two children. No other private details (his age, the children's names or ages), nothing internal about
+// his hobbies, that he has two children, and his x402 and AI-building know-how. No other private details (his age, the children's names or ages), nothing internal about
 // employers. The twin may not answer beyond this.
 
 export const PERSON = "Frits";
@@ -55,6 +55,27 @@ AI & building: building with Claude and Claude Code: APIs in Node.js, MCP server
 - PlainText explains wallet approvals and smart-contract permissions in plain language.
 The services are paid per call via the x402 protocol, so an AI agent can find them, pay a small amount in USDC and get an answer without an account or subscription. Building them taught him APIs, payments, MCP servers, testing, deploying and monitoring live services.`,
   },
+  x402: {
+    title: "His knowledge of x402 and payments for AI agents",
+    text: `How x402 works, from building and running four live services with it: an agent calls a paid endpoint, the server answers HTTP 402 with a payment challenge (price, network, token, payout address), the agent signs a USDC payment and repeats the request, and a facilitator verifies and settles it so the answer comes back in the same request. He supports the "exact" scheme on Base and Solana.
+- Discovery: his services are listed in the Coinbase CDP Bazaar, publish machine-readable descriptions (OpenAPI, /.well-known files) and offer MCP servers, so agents can find and call them as tools.
+- Trust before paying: x402 Doctor's $0.001 preflight tells an agent go / caution / no_go before it pays an unknown endpoint. He published x402-safe-fetch on npm: a fetch for agents that runs that check first and never pays above a set budget.
+- x402 Trust Index: a daily scan of every resource in the Bazaar with a rolling track record (up to 30 days) of whether each endpoint was actually payable; public as an API and as open data.
+- Signed receipts: paid answers come with a signature, so a buyer can later prove what it received.
+- Agent identity: three of his agents are registered on the Metaplex Agent Registry on Solana (EIP-8004 registration), with x402 support declared.
+- Operations: monitoring of all four services, a usage log and weekly reports of outside use.
+- Wallet safety know-how (presign-guard, PlainText): token approvals, Permit / Permit2 and Seaport signatures, honeypot tokens, mint and freeze powers.
+What he learned from running them: agents and indexers find paid endpoints easily and check prices a lot, but few pay yet; choosing and trusting a service is the real bottleneck, and clear, consistent pricing matters more than features. He shares this in the x402 community, for example as feedback on session-based payment and ranking ideas.`,
+  },
+  ai_building: {
+    title: "How he builds with AI",
+    text: `He builds with Claude and Claude Code, from idea to live service:
+- Claude API: structured outputs with a JSON schema, prompt caching, the right effort level per task, handling refusals and a fallback model, and treating user input as data so prompt injection doesn't change the rules.
+- Safe public demos: the system prompt and company data stay on the server, with rate limits and a daily cap per demo; a human reviews AI drafts, and consequential actions (refunds, cancellations) always need a person.
+- Beyond text: voice in this Digital Twin (speech recognition and read-aloud).
+- Engineering: Node.js APIs, automated tests, GitHub Actions for tests and deploys, Render and Strato hosting, browser tests with Playwright, monitoring and analytics.
+Most of his code is open on github.com/Fizzl13.`,
+  },
   projects: {
     title: "AI projects",
     text: `- ReplyDesk: turns a customer message into a draft reply that follows the company's policies; a human reviews every draft. The idea came from his own customer-service work: answering customer emails took long, so he built a tool where you pick the type of question and AI drafts a reply that you check and adjust, which made handling faster. The public demo uses a fictional company.
@@ -106,4 +127,5 @@ export const SUGGESTIONS = [
   { en: "What does Frits do at Mediahuis?", nl: "Wat doet Frits bij Mediahuis?" },
   { en: "What kind of role is he looking for?", nl: "Wat voor functie zoekt hij?" },
   { en: "How does he think about AI?", nl: "Hoe kijkt hij naar AI?" },
+  { en: "What does he know about x402 and AI agents?", nl: "Wat weet hij van x402 en AI-agents?" },
 ];

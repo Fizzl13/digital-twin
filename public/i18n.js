@@ -32,7 +32,7 @@ const I18N = {
     notInProfile: "Not in his profile",
     high: "high", medium: "medium", low: "low",
     s_profile: "Profile", s_fizzl: "FIZZL", s_mediahuis: "Mediahuis", s_consulting: "Consulting", s_tkmaxx: "TK Maxx",
-    s_skills: "Skills", s_languages: "Languages", s_education: "Education", s_services: "x402 services", s_projects: "Projects",
+    s_skills: "Skills", s_languages: "Languages", s_education: "Education", s_services: "x402 services", s_x402: "x402 knowledge", s_ai_building: "Building with AI", s_projects: "Projects",
     s_work_style: "Work style", s_ai_view: "View on AI", s_career: "Career", s_personal: "Outside work", s_approach: "Approach", s_contact: "Contact",
   },
   nl: {
@@ -65,7 +65,7 @@ const I18N = {
     notInProfile: "Staat niet in zijn profiel",
     high: "hoog", medium: "gemiddeld", low: "laag",
     s_profile: "Profiel", s_fizzl: "FIZZL", s_mediahuis: "Mediahuis", s_consulting: "Consultancy", s_tkmaxx: "TK Maxx",
-    s_skills: "Vaardigheden", s_languages: "Talen", s_education: "Opleiding", s_services: "x402-services", s_projects: "Projecten",
+    s_skills: "Vaardigheden", s_languages: "Talen", s_education: "Opleiding", s_services: "x402-services", s_x402: "x402-kennis", s_ai_building: "Bouwen met AI", s_projects: "Projecten",
     s_work_style: "Werkstijl", s_ai_view: "Kijk op AI", s_career: "Carrière", s_personal: "Buiten het werk", s_approach: "Aanpak", s_contact: "Contact",
   },
 };
